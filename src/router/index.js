@@ -1,43 +1,58 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-// import Home from '../views/Home.vue'
-// import register from '../views/register'
+import Home from '../views/Home.vue'
 import topNav from '../components/topNav'
 import updateProfile from '../views/updateProfile'
-import Catogary from '../views/Catogary.vue'
+import card from '../components/card'
+import carousel from '../components/carousel'
+import login from '../views/login'
+import signup from '../views/signup'
+import cartt from '../components/cartt'
+
 
 Vue.use(VueRouter)
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home
-  // },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // },
+ 
  
   {
-    path: '/',
+    path: '/topNav',
     name: 'topNav',
     component: topNav
   },
-  {
-    path: '/Catogary',
-    name: 'Catogary',
-    component: Catogary
-  },
+  
   {
     path: '/updateProfile',
     name: 'updateProfile',
     component: updateProfile
+  }, {
+    path: '/card',
+    name: 'card',
+    component: card
+  }, 
+  {
+    path: '/Home',
+    name: 'Home',
+    component: Home
+  }, 
+   {
+    path: '/carousel',
+    name: 'carousel',
+    component: carousel
+  },  {
+    path: '/login',
+    name: 'login',
+    component: login
+  }, {
+    path: '/',
+    name: 'signup',
+    component: signup
+  },{
+    path: '/cartt',
+    name: 'cartt',
+    component: cartt
   },
+
 ]
 
 const router = new VueRouter({

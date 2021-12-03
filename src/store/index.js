@@ -6,13 +6,18 @@ Vue.use(Vuex,axios);
 
 export default new Vuex.Store({
   // newstore,
-  state:{
+    state:{
     posts:[],
     Catogary: [],
     post: "",
     singleproductData: [],
+    cart:[]
   },
   actions:{
+
+    fetchAllProducts(){
+      alert("from dispatch all products")
+    },
     loadPosts({commit}){
       axios
            .get('https://fakestoreapi.com/products')
@@ -39,8 +44,7 @@ export default new Vuex.Store({
       
     },
     apiCall({ commit }, payload) {
-      console.log(commit);
-      console.log (payload);
+ 
       axios.get(`https://fakestoreapi.com/products/category/${payload}`).then((response) => {
             let data = response.data;
             console.log(data);
@@ -48,7 +52,6 @@ export default new Vuex.Store({
           })
   },
   fatchsingleProductData ({commit},payload) {
-    // alert(payload)
     axios
       .get(`https://fakestoreapi.com/products/${payload}`)
       .then(data => {
@@ -60,6 +63,28 @@ export default new Vuex.Store({
         console.log(error)
       })
   },
+  Add({commit},payload){
+
+    axios
+
+    .get(`https://fakestoreapi.com/products/${payload}`)
+
+    .then(data => {
+
+      console.log(data.data)
+
+      let product = data.data
+
+      commit('SET_CART', product)
+
+   })
+
+   .catch(error => {
+
+    console.log(error)
+
+  })}
+  
   },
 
   mutations:{
@@ -74,7 +99,12 @@ export default new Vuex.Store({
     },
     SET_PRODUCT(state, singleproductData){
       state.singleproductData = singleproductData
-  },
+  },SET_CART(state, cartData){
+    state.cart.push(cartData)
+
+  }
+  
+
   },
   getters:{
     getCat(state){
@@ -82,8 +112,11 @@ export default new Vuex.Store({
     }, 
     getSingleProduct(state){
       return state.singleproductData;
-    } 
+    },
+    getcart(state){
+    return state.cart;
+    }
   },
-  // modules: {},
+  
 });
 
